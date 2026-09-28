@@ -25,7 +25,7 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 
 ### 1. 文件检查
 
-<img width="2578" height="1744" alt="文件检查界面" src="https://github.com/user-attachments/assets/b709e9e2-944b-4592-b734-b773181d160a" />
+![文件检查界面](界面截图/界面截图%20(1).png)
 
 - 递归扫描所选文件夹及其全部子文件夹
 - 列出所有「有图片但同目录内无同名 txt」的图片（跨文件夹同名图片各自配对，互不干扰）
@@ -33,7 +33,7 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 
 ### 2. 文件重命名
 
-<img width="2580" height="1674" alt="文件重命名界面" src="https://github.com/user-attachments/assets/36611760-3242-4a16-b59f-015a29da467d" />
+![文件重命名界面](界面截图/界面截图%20(2).png)
 
 - 顶层文件夹优先处理，再递归子文件夹（按名称自然排序，`2` 排在 `10` 前面）
 - 图片与同名 txt **同进同退**：改同一个新名、扩展名不变，配对关系绝不破坏
@@ -45,7 +45,7 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 
 ### 3. 批量复制
 
-<img width="2570" height="1678" alt="批量复制界面" src="https://github.com/user-attachments/assets/ca71ec84-1ed2-47bc-8aaa-ca7fd5b6acd2" />
+![批量复制界面](界面截图/界面截图%20(3).png)
 
 - 读取一个或多个 TXT 清单中的文件路径，复制到指定文件夹
 - 兼容带引号、含制表符、注释行等多种导出格式；UTF-8 / GBK 编码自动识别
@@ -86,7 +86,7 @@ flowchart TD
     B6 --> B7([结束])
 ```
 
-> 完整交互式流程图（HTML 版）：[功能流程图.html](图片配对管理工具/功能流程图.html)
+> 完整功能流程图（HTML 静态版）：[功能流程图.html](图片配对管理工具/功能流程图.html)
 
 ## 使用方法
 
@@ -111,14 +111,19 @@ python 图片配对管理工具.py
 ## 项目结构
 
 ```
-图片配对管理工具/
-├── 图片配对管理工具.py     # 主程序（单文件，可打包为 exe）
-├── 使用说明.md             # 详细使用说明
-├── 功能流程图.html          # 核心逻辑流程图（HTML 交互版）
-├── icon.ico / icon_win_*.png  # 程序图标
-├── test_logic.py           # 核心逻辑回归测试
-├── test_gui_smoke.py       # GUI 冒烟测试
-└── 示例数据/               # 示例文件夹（演示配对/缺失场景）
+image-txt-manager/
+├── 图片配对管理工具/        # 主程序文件夹
+│   ├── 图片配对管理工具.py   # 主程序（单文件，可打包为 exe）
+│   ├── 图片配对管理工具.exe  # 打包好的可执行文件
+│   ├── 使用说明.md           # 详细使用说明
+│   ├── 功能流程图.html       # 功能流程（HTML 静态版）
+│   ├── icon.ico / icon_win_*.png  # 程序图标
+│   ├── test_logic.py         # 核心逻辑回归测试
+│   ├── test_gui_smoke.py     # GUI 冒烟测试
+│   └── 示例数据/             # 示例文件夹（演示配对/缺失场景）
+├── 界面截图/                 # README 展示用界面截图
+├── LICENSE                   # MIT 协议
+└── README.md
 ```
 
 ## 测试
