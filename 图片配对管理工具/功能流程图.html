@@ -60,9 +60,6 @@
     border-left: 8px solid #5a4a3d; border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
   }
-  .verticalline {
-    width: 2px; margin-left: 158px; height: 22px; background: #5a4a3d;
-  }
   .note {
     font-size: 12px; color: #9b8877; line-height: 1.9; margin-top: 16px;
     padding: 14px 16px; background: #241e1b; border-left: 3px solid #5a4a3d;
@@ -107,10 +104,23 @@
     </div>
   </section>
 
+  <section>
+    <div class="sec-title"><span class="num">③</span><span class="cn">批量复制</span><span class="en">Batch Copy · 按清单批量复制文件</span></div>
+    <div class="step"><span class="tag start">开始</span><div class="arrow"></div><div class="box">选择 TXT 清单：支持<b>一个或多个</b>，每行一个完整路径</div></div>
+    <div class="step"><div class="box dim">解析清单：兼容带引号、含制表符、注释行<br>编码 <b>UTF-8 / GBK 自动识别</b></div></div>
+    <div class="step"><span class="tag decide">判定</span><div class="arrow"></div><div class="box hl">逐行读取路径 → 校验文件<b>存在</b></div></div>
+    <div class="step"><div class="box">选择<b>目标文件夹</b>，逐文件复制</div></div>
+    <div class="step"><div class="box">同名冲突：自动<b>加序号</b>或<b>跳过</b>，绝不覆盖</div><div class="arrow"></div><span class="tag warn">冲突处理</span></div>
+    <div class="step"><div class="box">完成：显示复制成功 / 跳过统计</div><div class="arrow"></div><span class="tag out">完成</span></div>
+    <div class="note">
+      典型用法：先通过「文件检查」导出缺失清单，再用「批量复制」把清单中的文件复制到指定文件夹统一处理。
+    </div>
+  </section>
+
   <div class="legend">
     <span><i class="dot" style="background:#d9a05b"></i>核心判定</span>
     <span><i class="dot" style="background:#6d7f9e"></i>完成输出</span>
-    <span><i class="dot" style="background:#b3564f"></i>冲突跳过（红）</span>
+    <span><i class="dot" style="background:#b3564f"></i>冲突处理（红）</span>
     <span><i class="dot" style="background:#5b8c5a"></i>开始</span>
   </div>
 </div>
