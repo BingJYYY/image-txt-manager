@@ -133,6 +133,10 @@ python test_logic.py        # 核心逻辑回归测试（32 项断言）
 python 图片配对管理工具.py --selftest   # 内置自检
 ```
 
+---
+
+如果这个工具帮到了你，欢迎点个 ⭐ **Star** 支持一下，让更多人看到它。
+
 ## 协议
 
 MIT License
