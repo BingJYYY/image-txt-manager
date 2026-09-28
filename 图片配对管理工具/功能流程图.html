@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片配对管理工具 · 功能流程</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1b1715;
+    color: #e8dcc8;
+    font-family: "Microsoft YaHei UI", "Source Han Sans SC", "思源黑体", "PingFang SC", sans-serif;
+    padding: 40px 24px 64px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 {
+    font-size: 26px; letter-spacing: 2px; color: #f0e4cf; font-weight: 600;
+    text-align: center; padding-bottom: 6px;
+  }
+  .sub {
+    text-align: center; color: #9b8877; font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 34px;
+  }
+  section { margin-bottom: 40px; }
+  .sec-title {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px;
+  }
+  .sec-title .num {
+    font-size: 22px; color: #d9a05b; font-weight: 700;
+  }
+  .sec-title .cn { font-size: 18px; color: #f0e4cf; }
+  .sec-title .en { font-size: 12px; color: #9b8877; letter-spacing: 2px; }
+  .step {
+    display: flex; align-items: center; gap: 16px; position: relative;
+    padding: 12px 0;
+  }
+  .box {
+    flex: 0 0 auto; min-width: 300px; max-width: 420px;
+    background: #2a2320; border: 1px solid #46372c;
+    border-radius: 8px; padding: 10px 16px; font-size: 14px; color: #e8dcc8;
+    box-shadow: 0 2px 8px rgba(0,0,0,.35);
+  }
+  .box b { color: #d9a05b; font-weight: 600; }
+  .box.dim { background: #241e1b; }
+  .box.hl { border-color: #d9a05b; }
+  .tag {
+    flex: 0 0 auto; font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    letter-spacing: 1px; color: #1b1715; font-weight: 600;
+  }
+  .tag.start { background: #5b8c5a; }
+  .tag.decide { background: #d9a05b; }
+  .tag.out { background: #6d7f9e; }
+  .tag.warn { background: #b3564f; color: #f3e6e2; }
+  .arrow {
+    flex: 1 1 auto; min-width: 40px; height: 2px; background: #5a4a3d;
+    position: relative;
+  }
+  .arrow::after {
+    content: ""; position: absolute; right: 0; top: -4px;
+    border-left: 8px solid #5a4a3d; border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+  .verticalline {
+    width: 2px; margin-left: 158px; height: 22px; background: #5a4a3d;
+  }
+  .note {
+    font-size: 12px; color: #9b8877; line-height: 1.9; margin-top: 16px;
+    padding: 14px 16px; background: #241e1b; border-left: 3px solid #5a4a3d;
+    border-radius: 0 8px 8px 0;
+  }
+  .legend { display: flex; gap: 26px; margin: 10px 0 22px; font-size: 12px; color: #b5a48f; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .ex { font-size: 13px; color: #d9a05b; }
+  .ex code {
+    background: #2a2320; border: 1px solid #46372c; border-radius: 4px;
+    padding: 1px 7px; color: #e8dcc8; font-family: Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>图片配对管理工具 · 功能流程</h1>
+  <div class="sub">Image-Txt Manager · Workflow</div>
+
+  <section>
+    <div class="sec-title"><span class="num">①</span><span class="cn">文件检查</span><span class="en">File Check · 找出缺同名 txt 的图片</span></div>
+    <div class="step"><span class="tag start">开始</span><div class="arrow"></div><div class="box">选择文件夹</div></div>
+    <div class="step"><div class="box">递归扫描：所选文件夹 <b>+ 所有子文件夹</b></div><div class="arrow"></div><span class="tag out">范围</span></div>
+    <div class="step"><div class="box dim">逐文件夹配对：只在<b>同一文件夹内</b>配对，不区分大小写；跨文件夹同名图片互不干扰</div></div>
+    <div class="step"><span class="tag decide">判定</span><div class="arrow"></div><div class="box hl">图片有、同名 txt 无 → 记为<b>缺失</b></div></div>
+    <div class="step"><div class="box">列表展示缺失图片的<b>完整路径</b></div><div class="arrow"></div><span class="tag out">输出</span></div>
+    <div class="step"><div class="box">导出 txt：每个完整路径一行 · UTF-8 · 保存位置自选</div><div class="arrow"></div><span class="tag out">完成</span></div>
+  </section>
+
+  <section>
+    <div class="sec-title"><span class="num">②</span><span class="cn">文件重命名</span><span class="en">Rename · 图片与 txt 一一对应</span></div>
+    <div class="step"><span class="tag start">开始</span><div class="arrow"></div><div class="box">选择文件夹</div></div>
+    <div class="step"><div class="box hl">处理顺序：<b>先处理所选文件夹本身</b>（如有图片）<br>再递归<b>所有子文件夹</b>，按名称自然排序先小后大（2 → 10）</div><div class="arrow"></div><span class="tag decide">核心判定</span></div>
+    <div class="step"><div class="box">逐张编号：起始编号 / 位数 / 前缀 / 后缀可设<br>编号<b>全局连续</b>；扩展名不变</div></div>
+    <div class="step"><div class="box">一一对应：<b>DSC1234.jpg → 000001.jpg</b> 时，<b>DSC1234.txt → 000001.txt</b><br>缺 txt 只改图片；孤儿 txt 不动</div></div>
+    <div class="step"><div class="box">预览方案：冲突（目标已存在）标红<b>跳过</b>，绝不覆盖</div><div class="arrow"></div><span class="tag warn">冲突跳过</span></div>
+    <div class="step"><div class="box">执行重命名：两阶段安全执行（先临时名 → 再正式名）</div><div class="arrow"></div><span class="tag out">完成</span></div>
+    <div class="note">
+      命名示例：前缀「写真集」→ <span class="ex"><code>写真集000001.jpg</code></span>；后缀「写真集」→ <span class="ex"><code>000001写真集.jpg</code></span><br>
+      规则：顶层有图片时先处理顶层，再递归子文件夹；顶层无图片时直接从子文件夹开始。编号全程连续、不重置。
+    </div>
+  </section>
+
+  <div class="legend">
+    <span><i class="dot" style="background:#d9a05b"></i>核心判定</span>
+    <span><i class="dot" style="background:#6d7f9e"></i>完成输出</span>
+    <span><i class="dot" style="background:#b3564f"></i>冲突跳过（红）</span>
+    <span><i class="dot" style="background:#5b8c5a"></i>开始</span>
+  </div>
+</div>
+</body>
+</html>
