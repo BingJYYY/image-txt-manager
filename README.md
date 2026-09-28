@@ -1,5 +1,14 @@
 # 图片配对管理工具（IMAGE-TXT MANAGER）
 
+<p align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
+![Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+</p>
+
 > AI 生图模型训练数据集管理工具 —— 管理图片与同名 txt 打标文件的配对关系，一键检查缺失、批量重命名、批量复制。
 
 An AI-generated-image training dataset manager: check, rename and copy image files with their paired .txt caption files, all in one tool. Pure Python stdlib, zero dependencies.
@@ -42,6 +51,43 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 - 兼容带引号、含制表符、注释行等多种导出格式；UTF-8 / GBK 编码自动识别
 - 同名文件可自动加序号或跳过（绝不覆盖）
 
+## 核心流程
+
+```mermaid
+flowchart TD
+    Start([开始]) --> Choose{选择功能}
+
+    Choose -->|1. 文件检查| C1[选择文件夹]
+    C1 --> C2[递归扫描所有子文件夹]
+    C2 --> C3{同目录内图片<br>是否有同名 txt?}
+    C3 -->|有| C4[配对正常，跳过]
+    C3 -->|没有| C5[加入缺失清单]
+    C5 --> C6[一键导出 TXT 清单]
+    C4 --> C7([结束])
+    C6 --> C7
+
+    Choose -->|2. 文件重命名| R1[选择文件夹<br>顶层优先]
+    R1 --> R2[子文件夹按名称自然排序]
+    R2 --> R3[图片与同名 txt 一一配对]
+    R3 --> R4[生成新名：编号 + 前缀/后缀]
+    R4 --> R5{目标名被占用?}
+    R5 -->|是| R6[整对跳过，绝不覆盖]
+    R5 -->|否| R7[执行改名<br>中断后重启可自动恢复]
+    R6 --> R7
+    R7 --> R8([结束])
+
+    Choose -->|3. 批量复制| B1[读取 TXT 清单路径]
+    B1 --> B2[编码自动识别 UTF-8/GBK]
+    B2 --> B3[复制到指定文件夹]
+    B3 --> B4{同名文件?}
+    B4 -->|是| B5[自动加序号或跳过]
+    B4 -->|否| B6[正常复制]
+    B5 --> B6
+    B6 --> B7([结束])
+```
+
+> 完整交互式流程图（HTML 版）：[功能流程图.html](图片配对管理工具/功能流程图.html)
+
 ## 使用方法
 
 **方式一：直接使用（推荐）**
@@ -68,7 +114,7 @@ python 图片配对管理工具.py
 图片配对管理工具/
 ├── 图片配对管理工具.py     # 主程序（单文件，可打包为 exe）
 ├── 使用说明.md             # 详细使用说明
-├── 功能流程图.html          # 核心逻辑流程图
+├── 功能流程图.html          # 核心逻辑流程图（HTML 交互版）
 ├── icon.ico / icon_win_*.png  # 程序图标
 ├── test_logic.py           # 核心逻辑回归测试
 ├── test_gui_smoke.py       # GUI 冒烟测试
