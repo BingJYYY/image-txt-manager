@@ -44,7 +44,9 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 
 ## 使用方法
 
-**方式一：直接使用**
+**方式一：直接使用（推荐）**
+
+> 系统要求：Windows 10 / 11（64 位），exe 免安装，下载后直接双击运行。
 
 下载 Releases 中的 `图片配对管理工具.exe`，双击运行（Windows）。
 
@@ -53,6 +55,8 @@ An AI-generated-image training dataset manager: check, rename and copy image fil
 ```bash
 python 图片配对管理工具.py
 ```
+
+环境要求：Python 3.8+，仅使用 tkinter 标准库，**零第三方依赖**。
 
 ## 界面
 
